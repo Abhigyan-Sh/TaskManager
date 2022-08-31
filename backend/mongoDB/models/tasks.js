@@ -8,6 +8,10 @@ const TaskSchema = new Schema(
         required: true,
         unique: true,
       },
+      completed: {
+        type: Boolean,
+        default: false,
+      }
     },
     { timestamps: true }    
 );

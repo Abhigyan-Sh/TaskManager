@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import Tasks from './mongoDB/models/tasks.js'
 import Pusher from 'pusher'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import connectToMongoDB from './mongoDB/connectMongo.js'
 
 dotenv.config()
@@ -15,13 +16,10 @@ const pusher = new Pusher({
     cluster: process.env.cluster,
     useTLS: true
   });
-// middlewares
+// the big three
 app.use(express.json())
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Headers", "*")
-    next()
-})
+app.use(cors())
+app.use(express.urlencoded({extended: true}))
 
 const db = mongoose.connection
 db.once('open', () => {
@@ -33,20 +31,15 @@ db.once('open', () => {
             const taskDetails = change.fullDocument
             pusher.trigger('my-task', 'inserted', 
             {
-                task: taskDetails.task
+                task: taskDetails.task,
+                completed: taskDetails.completed
             }
         )} else if (change.operationType === 'delete') {
             pusher.trigger('my-task', 'deleted', 
             change.documentKey._id
-        )} else if (change.operationType === 'update') {
-            const taskDetails = change.fullDocument
-            pusher.trigger('my-task', 'updated', 
-            // change.documentKey._id, 
-            {
-                task: taskDetails.task
-            }
-            /* above update thing needs to be managed! rest seems all fine */
-        )} else {
+        )} 
+         
+        else {
             console.log('Error Triggering Pusher!')
         }
     })
@@ -63,6 +56,15 @@ app.post('/api_v1/tasks/new', (req, res) => {
             res.status(500).send(err)
         } else {
             res.status(201).send(data)
+        }
+    })
+})
+app.get('/api_v1/tasks/sync/:id', (req, res) => {
+    Tasks.findById(req.params.id, (err, data) => {
+        if (err) {
+            res.status(500).send(err)
+        } else {
+            res.status(200).send(data)
         }
     })
 })
@@ -86,7 +88,8 @@ app.delete('/api_v1/tasks/del/:id', (req, res) => {
 })
 app.patch('/api_v1/tasks/update/:id', (req, res) => {
     Tasks.findByIdAndUpdate(req.params.id, {
-        task: req.body.task
+        task: req.body.task,
+        completed: req.body.completed
     }, (err, data) => {
         if (err) {
             res.status(500).send(err)
