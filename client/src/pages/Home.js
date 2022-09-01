@@ -6,13 +6,13 @@ import Pusher from 'pusher-js'
 const Home = () => {
   const styles = {
     homePgCover: 'bg-zinc-100 h-screen w-screen',
-    taskMng: 'bg-rose-20 w-5/12 h-screen m-auto pt-24',
-    createTasks: 'h-44 p-8 mb-24 shadow-2xl bg-white',
+    taskMng: 'w-5/12 h-full m-auto pt-24 someSize1:w-6/12 someSize2:w-9/12 someSize3:w-10/12',
+    createTasks: 'h-44 p-8 mb-24 shadow-2xl bg-white someSize5:p-5',
     peekTasks: 'w-full flex flex-col',
     heading: 'text-center text-3xl mb-7 font-custom3 text-rose-300 cursor-default',
-    inputBox: 'flex items-center w-10/12 m-auto',
-    input: 'basis-3/4 h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full',
-    dropBelow: 'basis-1/4 h-full p-2 text-base font-medium text-gray-900 focus:outline-none bg-white rounded-r-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700',
+    inputBox: 'flex items-center w-10/12 m-auto someSize5:w-full',
+    input: 'basis-3/4 h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full someSize6:text-xs',
+    dropBelow: 'basis-1/4 h-full p-2 text-base font-medium text-gray-900 focus:outline-none bg-white rounded-r-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 someSize3:text-sm someSize6:text-xs',
     errorMessage: 'text-center text-rose-500',
   }
   const [ tasks, setTasks ] = useState([])
@@ -75,7 +75,7 @@ const Home = () => {
               value= {inputTask}
               onChange= {e => setInputTask(e.target.value)}
               />
-            <button className={styles.dropBelow} onClick={handleDropBelow}>drop below</button>
+            <button className={styles.dropBelow} onClick={handleDropBelow}>dropDown</button>
           </div>
           {errMsg && (
             <p className={styles.errorMessage}>{errMsg}</p>

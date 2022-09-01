@@ -19,6 +19,14 @@ module.exports = {
       'custom2': ['Silkscreen'],
       'custom3': ['Quicksand']
     },
+    screens: {
+      'someSize1': {'max': '1320px'},
+      'someSize2': {'max': '1000px'},
+      'someSize3': {'max': '735px'},
+      'someSize4': {'max': '600px'},
+      'someSize5': {'max': '470px'},
+      'someSize6': {'max': '305px'},
+    },
   plugins: [],
   }
 }
