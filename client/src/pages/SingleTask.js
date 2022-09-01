@@ -6,12 +6,12 @@ import axios from '../axios.js'
 const SingleTask = () => {
   const styles = {
     modalBG: 'w-screen h-screen bg-modalBg flex justify-center items-center',
-    modal: 'w-4/12 h-4/12 bg-white rounded-xl shadow-custom flex flex-col p-6',
+    modal: 'w-4/12 h-4/12 bg-white rounded-xl shadow-custom flex flex-col p-6 someSize1:w-6/12 someSize3:w-8/12 someSize4:w-10/12',
     cancelBtnCov: 'flex justify-end',
     cancelBtn: 'bg-transparent border-0 text-2xl pointer-cursor',
     inputCover: 'flex flex-col justify-center items-center',
     title: 'inline-block text-center mt-3 text-3xl',
-    inputBox: 'p-2 rounded-lg m-3 bg-zinc-100 w-8/12 outline-0',
+    inputBox: 'p-2 rounded-lg m-3 bg-zinc-100 w-8/12 outline-0 someSize5:text-sm someSize5:w-10/12',
     checkCover: 'flex items-center gap-x-2',
     options: 'flex justify-center items-center mt-5',
     delete: 'bg-gray-300 hover:bg-gray-400 text-rose-500 font-bold py-2 px-4 rounded-l',

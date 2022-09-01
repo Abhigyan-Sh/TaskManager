@@ -5,7 +5,7 @@ const Task = (props) => {
   const styles = {
     taskCover: 'p-5 mb-2 shadow-xl bg-white hover:text-emerald-700 hover:-translate-y-0.5',
     taskText: 'text-lg capitalize font-custom1 font-semibold pl-10 tracking-wider',
-    taskTextCompleted: 'text-lg capitalize font-custom1 font-semibold pl-10 tracking-wider line-through',
+    taskTextCompleted: 'text-lg capitalize font-custom1 font-semibold pl-10 tracking-wider line-through someSize5:text-rose-500',
   }
   if (props.task.completed) {
     styles.taskText = styles.taskTextCompleted
